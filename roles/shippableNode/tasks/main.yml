@@ -1,0 +1,53 @@
+---
+- debug: 
+    msg: "state passed in is: {{ state }}"
+
+- name: install tools
+  become: yes
+  become_method: sudo
+  apt:
+    name: "{{ item  }}"
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian" 
+  with_items:
+    - jq
+    - python-jmespath
+
+# - name: read json data - instance ids
+#   vars:
+#     sampleJson: "{{ lookup('file', 'sample.json') | from_json }}"
+#   debug: var=item
+#   with_items: "{{ sampleJson.instance_ids}}"
+#   register: instance_ids
+#
+# - name: print instance_ids
+#   debug:
+#     msg: instance_ids
+#
+# - name: read json data - json query
+#   vars:
+#     sampleJson: "{{ lookup('file', 'sample.json') | from_json }}"
+#   debug: var=item
+#   with_items: "{{ sampleJson | json_query(\"instances[?id == \'i-037d1a0a3d785a932\'].id\") }}"
+#   register: instances
+#
+# - name: read json data - json query with variable
+#   vars:
+#     sampleJson: "{{ lookup('file', 'sample.json') | from_json }}"
+#   debug:
+#     msg: "{{ item }}"
+#   # with_items: instance_ids
+#   with_items:
+#     - "{{ instance_ids }}"
+#     # - "{{ sampleJson | json_query(\"instances[?id == '\" + item[0] + \"'].id\") }}"
+#   register: instances
+
+- include: tasks/initialize.yml
+  when: state == "present"
+
+# - include: tasks/register.yml
+#   when: state == "present"
+
+- include: tasks/terminate.yml
+  when: state == "absent"

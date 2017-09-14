@@ -1,0 +1,24 @@
+resources:
+
+  # resources for sample provisioning pipeline using Ansible
+
+################################
+
+# config for awscli 
+  - name: shipdemo-cli-aws
+    type: cliConfig
+    integration: dr-aws
+    pointer:
+      region: us-east-1
+    flags:
+      - aws-provision-ansible
+
+# GitHub repo holding Ansible scripts to be used in pipeline
+  - name: shipdemo-repo
+    type: gitRepo
+    integration: dr-github # replace with your GitHub integration name
+    pointer:
+      sourceName: devops-recipes/aws-provision-ansible
+      branch: master
+    flags:
+      - aws-provision-ansible

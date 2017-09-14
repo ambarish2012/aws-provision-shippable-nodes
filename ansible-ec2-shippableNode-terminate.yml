@@ -1,0 +1,13 @@
+---
+### terminate AWS EC/2 instances
+- hosts: shippablenodes
+  connection: local
+  gather_facts: true
+  user: root
+  pre_tasks:
+    - include_vars: group_vars/shippable-nodes.yml
+  vars:
+    state: absent
+    API_TOKEN: "{{ lookup('env', 'API_TOKEN') }}"
+  roles:
+    - shippableNode

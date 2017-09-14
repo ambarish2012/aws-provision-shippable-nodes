@@ -1,0 +1,11 @@
+ec2_keypair: "kp-us-east-1"
+ec2_security_group: "sg-66c3c700"
+ec2_instance_type: "c4.large"
+ec2_image: "ami-f4cc1de2" # Ubuntu Server 16.04 LTS
+ec2_subnet_ids: ['subnet-d403cfa2','subnet-5b47fc66','subnet-fb7060d0']
+ec2_region: "us-east-1"
+ec2_tag_Role: "shippable-node"
+ec2_tag_Type: "buildserver"
+ec2_tag_Environment: "prod"
+ec2_volume_size: 30
+ec2_count: 1 

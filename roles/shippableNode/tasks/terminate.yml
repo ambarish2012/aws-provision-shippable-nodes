@@ -1,0 +1,37 @@
+---
+- name: Terminate instances with tag Role = {{ ec2_tag_Role }}
+  ec2:
+    region: "{{ ec2_region }}"
+    instance_ids: "{{ ec2_id }}"
+    state: 'absent'
+    wait: true
+  delegate_to: "localhost"
+  register: ec2
+
+- name: Get node information from Shippable
+  uri:
+    url: https://api.shippable.com/clusterNodes
+    method: GET
+    headers:
+      authorization: "apiToken {{ API_TOKEN }}"
+      cache-control: "no-cache"
+      content-type: "application/json"
+  register: shippable
+
+- name: Get clusterNodeIds for Shippable nodes
+  debug: var=item
+  vars:
+    query: "\"json[?friendlyName=='\" + item[0] + \"'].{id: node}\""
+  with_nested:
+    - "{{ ec2.instanceid }}"
+    - "{{ shippable|json_query(query) }}"
+  register: shippableClusterIds
+
+- name: Deregister nodes from Shippable
+  uri:
+    url: https://api.shippable.com/clusterNodes/{{ item }}
+    method: DELETE
+    headers:
+      authorization: "apiToken {{ API_TOKEN }}"
+  with_items: "{{ shippableClusterIds.node }}"
+

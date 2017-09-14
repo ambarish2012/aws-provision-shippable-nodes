@@ -1,0 +1,240 @@
+{
+    "changed": true,
+    "instance_ids": [
+        "i-037d1a0a3d785a932",
+        "i-0928898805381ef9b"
+    ],
+    "instances": [
+        {
+            "ami_launch_index": "0",
+            "architecture": "x86_64",
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true,
+                    "status": "attached",
+                    "volume_id": "vol-0f66f2fc10644e483"
+                }
+            },
+            "dns_name": "ec2-54-86-147-199.compute-1.amazonaws.com",
+            "ebs_optimized": false,
+            "groups": {
+                "sg-66c3c700": "default"
+            },
+            "hypervisor": "xen",
+            "id": "i-037d1a0a3d785a932",
+            "image_id": "ami-f4cc1de2",
+            "instance_type": "c3.large",
+            "kernel": null,
+            "key_name": "kp-us-east-1",
+            "launch_time": "2017-04-07T18:30:59.000Z",
+            "placement": "us-east-1a",
+            "private_dns_name": "ip-172-31-62-210.ec2.internal",
+            "private_ip": "172.31.62.210",
+            "public_dns_name": "ec2-54-86-147-199.compute-1.amazonaws.com",
+            "public_ip": "54.86.147.199",
+            "ramdisk": null,
+            "region": "us-east-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "state": "running",
+            "state_code": 16,
+            "tags": {
+                "Environment": "prod",
+                "Name": "shippable-node",
+                "Role": "shippable-node",
+                "Type": "buildserver"
+            },
+            "tenancy": "default",
+            "virtualization_type": "hvm"
+        },
+        {
+            "ami_launch_index": "1",
+            "architecture": "x86_64",
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true,
+                    "status": "attached",
+                    "volume_id": "vol-01c994d708c10fc0a"
+                }
+            },
+            "dns_name": "ec2-54-174-49-86.compute-1.amazonaws.com",
+            "ebs_optimized": false,
+            "groups": {
+                "sg-66c3c700": "default"
+            },
+            "hypervisor": "xen",
+            "id": "i-0928898805381ef9b",
+            "image_id": "ami-f4cc1de2",
+            "instance_type": "c3.large",
+            "kernel": null,
+            "key_name": "kp-us-east-1",
+            "launch_time": "2017-04-07T18:30:59.000Z",
+            "placement": "us-east-1a",
+            "private_dns_name": "ip-172-31-56-140.ec2.internal",
+            "private_ip": "172.31.56.140",
+            "public_dns_name": "ec2-54-174-49-86.compute-1.amazonaws.com",
+            "public_ip": "54.174.49.86",
+            "ramdisk": null,
+            "region": "us-east-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "state": "running",
+            "state_code": 16,
+            "tags": {
+                "Environment": "prod",
+                "Name": "shippable-node",
+                "Role": "shippable-node",
+                "Type": "buildserver"
+            },
+            "tenancy": "default",
+            "virtualization_type": "hvm"
+        }
+    ],
+    "invocation": {
+        "module_args": {
+            "assign_public_ip": true,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "count": 1,
+            "count_tag": "{'Role': 'shippable-node'}",
+            "ebs_optimized": false,
+            "ec2_url": null,
+            "exact_count": 2,
+            "group": null,
+            "group_id": [
+                "sg-66c3c700"
+            ],
+            "id": null,
+            "image": "ami-f4cc1de2",
+            "instance_ids": null,
+            "instance_initiated_shutdown_behavior": null,
+            "instance_profile_name": null,
+            "instance_tags": {
+                "Environment": "prod",
+                "Name": "shippable-node",
+                "Role": "shippable-node",
+                "Type": "buildserver"
+            },
+            "instance_type": "c3.large",
+            "kernel": null,
+            "key_name": "kp-us-east-1",
+            "monitoring": false,
+            "network_interfaces": null,
+            "placement_group": null,
+            "private_ip": null,
+            "profile": null,
+            "ramdisk": null,
+            "region": "us-east-1",
+            "security_token": null,
+            "source_dest_check": true,
+            "spot_launch_group": null,
+            "spot_price": null,
+            "spot_type": "one-time",
+            "spot_wait_timeout": "600",
+            "state": "present",
+            "tenancy": "default",
+            "termination_protection": null,
+            "user_data": null,
+            "validate_certs": true,
+            "volumes": [
+                {
+                    "delete_on_termination": true,
+                    "device_name": "/dev/sda1",
+                    "device_type": "gp2",
+                    "volume_size": 30
+                }
+            ],
+            "vpc_subnet_id": "subnet-fb7060d0",
+            "wait": true,
+            "wait_timeout": "300",
+            "zone": null
+        },
+        "module_name": "ec2"
+    },
+    "tagged_instances": [
+        {
+            "ami_launch_index": "0",
+            "architecture": "x86_64",
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true,
+                    "status": "attached",
+                    "volume_id": "vol-0f66f2fc10644e483"
+                }
+            },
+            "dns_name": "ec2-54-86-147-199.compute-1.amazonaws.com",
+            "ebs_optimized": false,
+            "groups": {
+                "sg-66c3c700": "default"
+            },
+            "hypervisor": "xen",
+            "id": "i-037d1a0a3d785a932",
+            "image_id": "ami-f4cc1de2",
+            "instance_type": "c3.large",
+            "kernel": null,
+            "key_name": "kp-us-east-1",
+            "launch_time": "2017-04-07T18:30:59.000Z",
+            "placement": "us-east-1a",
+            "private_dns_name": "ip-172-31-62-210.ec2.internal",
+            "private_ip": "172.31.62.210",
+            "public_dns_name": "ec2-54-86-147-199.compute-1.amazonaws.com",
+            "public_ip": "54.86.147.199",
+            "ramdisk": null,
+            "region": "us-east-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "state": "running",
+            "state_code": 16,
+            "tags": {
+                "Environment": "prod",
+                "Name": "shippable-node",
+                "Role": "shippable-node",
+                "Type": "buildserver"
+            },
+            "tenancy": "default",
+            "virtualization_type": "hvm"
+        },
+        {
+            "ami_launch_index": "1",
+            "architecture": "x86_64",
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true,
+                    "status": "attached",
+                    "volume_id": "vol-01c994d708c10fc0a"
+                }
+            },
+            "dns_name": "ec2-54-174-49-86.compute-1.amazonaws.com",
+            "ebs_optimized": false,
+            "groups": {
+                "sg-66c3c700": "default"
+            },
+            "hypervisor": "xen",
+            "id": "i-0928898805381ef9b",
+            "image_id": "ami-f4cc1de2",
+            "instance_type": "c3.large",
+            "kernel": null,
+            "key_name": "kp-us-east-1",
+            "launch_time": "2017-04-07T18:30:59.000Z",
+            "placement": "us-east-1a",
+            "private_dns_name": "ip-172-31-56-140.ec2.internal",
+            "private_ip": "172.31.56.140",
+            "public_dns_name": "ec2-54-174-49-86.compute-1.amazonaws.com",
+            "public_ip": "54.174.49.86",
+            "ramdisk": null,
+            "region": "us-east-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "state": "running",
+            "state_code": 16,
+            "tags": {
+                "Environment": "prod",
+                "Name": "shippable-node",
+                "Role": "shippable-node",
+                "Type": "buildserver"
+            },
+            "tenancy": "default",
+            "virtualization_type": "hvm"
+        }
+    ]
+}

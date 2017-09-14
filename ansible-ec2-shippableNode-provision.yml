@@ -1,0 +1,32 @@
+---
+### provision AWS EC/2 instances
+- hosts: localhost
+  connection: local
+  gather_facts: true
+  user: root
+  pre_tasks:
+    - include_vars: group_vars/shippable-nodes.yml
+  roles:
+    - ec2-provision
+  post_tasks:
+    - name: refresh hosts inventory list
+      meta: refresh_inventory
+
+### initialize as Shippable nodes
+- hosts: shippablenodes
+  remote_user: ubuntu
+  vars:
+    state: present
+    API_TOKEN: "{{ lookup('env', 'API_TOKEN') }}"
+    SUBSCRIPTION_ID: "{{ lookup('env', 'SUBSCRIPTION_ID') }}"
+  gather_facts: false
+  pre_tasks:
+    - name: Install python for Ansible
+      become: yes
+      become_method: sudo
+      raw: test -e /usr/bin/python || (apt-get -y update && apt-get install -y python-minimal)
+      register: output
+      changed_when: output.stdout != ""
+    - setup: # aka gather_facts
+  roles:
+    - shippableNode

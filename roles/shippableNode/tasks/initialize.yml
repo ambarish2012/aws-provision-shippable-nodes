@@ -1,0 +1,62 @@
+---
+- name: Prepare node for initialization
+  script: initializeShippableNode.sh {{ API_TOKEN }} {{ SUBSCRIPTION_ID }}
+
+# - name: Get instance ids for Shippable nodes
+#   ec2_remote_facts:
+#     region: "{{ ec2_region }}"
+#     filters:
+#       instance-state-name: running
+#       "tag:Role": "{{ ec2_tag_Role }}"
+#   delegate_to: "localhost"
+#   register: ec2_facts
+#
+# - name: Run local action
+#   debug:
+#     msg: "{{ item.id }}"
+#   run_once: true
+#   delegate_to: "localhost"
+#   with_items: "{{ ec2_facts.instances }}"
+#
+# - name: Register node with Shippable
+#   vars:
+#     OS_DOCKER: ubu_16.04_docker_1.13.sh
+#   uri:
+#     url: https://api.shippable.com/clusterNodes
+#     method: POST
+#     headers:
+#       authorization: "apiToken {{ API_TOKEN }}"
+#       cache-control: "no-cache"
+#       content-type: "application/json"
+#     body: "{\"subscriptionId\": \"{{ SUBSCRIPTION_ID }}\",\"friendlyName\": \"{{ item.id }}\",\"location\": \"{{ item.public_ip_address }}\",\"nodeInitScript\": \"{{ OS_DOCKER }}\",\"initializeSwap\": false,\"nodeTypeCode\": 7000,\"isShippableInitialized\": false}"
+#     body_format: json
+#   ignore_errors: yes
+#   delegate_to: "localhost"
+#   run_once: true
+#   with_items: "{{ ec2_facts.instances }}"
+#   register: shippableResponse
+#
+# - name: Run local action
+#   debug:
+#     msg: "{{ item.json.id }}"
+#   run_once: true
+#   delegate_to: "localhost"
+#   with_items: "{{ shippableResponse }}"
+#
+# # - name: Get clusterNodeIds for Shippable nodes
+# #   debug: var=item
+# #   vars:
+# #     query: "\"json[?friendlyName=='\" + item[0] + \"'].{id: node}\""
+# #   with_nested:
+# #     - "{{ ec2.instanceid }}"
+# #     - "{{ shippable|json_query(query) }}"
+# #   register: shippableClusterIds
+# #
+# # - name: Deregister nodes from Shippable
+# #   uri:
+# #     url: https://api.shippable.com/clusterNodes/{{ item }}
+# #     method: DELETE
+# #     headers:
+# #       authorization: "apiToken {{ API_TOKEN }}"
+# #   with_items: "{{ shippableClusterIds.node }}"
+# #
